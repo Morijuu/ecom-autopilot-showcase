@@ -1,0 +1,15 @@
+{
+  "name": "ecom-autopilot-showcase",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Public showcase of ecom-autopilot: an agentic Shopify theme-dev assistant on Claude Code (orchestrator, sub-agents, evidence-backed process gates).",
+  "engines": { "node": ">=22.12" },
+  "scripts": {
+    "selftest": "node scripts/gate-selftest.mjs",
+    "demo": "node scripts/demo-gates.mjs"
+  },
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

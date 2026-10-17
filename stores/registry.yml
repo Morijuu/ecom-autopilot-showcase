@@ -1,0 +1,17 @@
+# Store registry (example; the real one is private and git-tracked without tokens)
+# <handle>:
+#   cliente: <client hub in memoria/clientes/>
+#   tipo: CLIENTE | EQUIPO | COLABORACIÓN
+#   dominio: <handle>.<shopify-domain>
+#   tema: <live theme>
+aaaaaa-aa:
+  cliente: demo-team
+  tipo: EQUIPO
+  dominio: aaaaaa-aa.example.com
+  tema: Shrine
+demo-store:
+  cliente: demo
+  tipo: CLIENTE
+  dominio: demo-store.example.com
+  tema: Dawn
+# end

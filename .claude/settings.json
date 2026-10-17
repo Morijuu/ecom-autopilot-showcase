@@ -1,0 +1,53 @@
+{
+  "env": { "MCP_TIMEOUT": "120000" },
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/session_start.mjs" }] },
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/cerebro_start.mjs", "timeout": 90 }] }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash|mcp__mcp-image__generate_image",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/pre_tool.mjs", "timeout": 30 }]
+      },
+      {
+        "matcher": "Agent",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/pizarra.mjs", "timeout": 10 }]
+      }
+    ],
+    "SubagentStart": [
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/pizarra.mjs", "timeout": 10 }] }
+    ],
+    "SubagentStop": [
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/pizarra.mjs", "timeout": 10 }] }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/post_tool.mjs" }]
+      }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/prompt_submit.mjs" }] },
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/pizarra.mjs", "timeout": 10 }] }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/cierre.mjs" }] },
+      { "hooks": [{ "type": "command", "command": "node .claude/hooks/pizarra.mjs", "timeout": 10 }] }
+    ]
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git pull:*)",
+      "Bash(git status:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(node scripts/backup-theme.mjs:*)",
+      "Bash(node scripts/discord-pull.mjs:*)",
+      "Bash(node scripts/convergencia.mjs:*)",
+      "Bash(node scripts/captura.mjs:*)",
+      "Bash(node scripts/gate.mjs:*)"
+    ]
+  }
+}
